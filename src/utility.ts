@@ -1,5 +1,15 @@
 import axios from 'axios'
 import { message } from 'antd'
+axios.defaults.baseURL = process.env.REACT_APP_API_URL
+
+export function isWxAgent() {
+  let ua = window.navigator.userAgent.toLowerCase();
+  if (ua.indexOf('micromessenger') !== -1) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 function handleError(err:any, showMsg:boolean) {
   if (err.response) {
@@ -17,7 +27,7 @@ function handleError(err:any, showMsg:boolean) {
   }
 }
 
-export function fetchData(path:string, params:object, showMsg = true) {
+export function fetchData(path:string, params?:object, showMsg = true) {
   console.debug(`PATH: "${path}"`)
   if (params) {
     console.debug('PARAMS:')
@@ -40,7 +50,7 @@ export function fetchData(path:string, params:object, showMsg = true) {
   });
 }
 
-export function deleteData(path:string, params:object, showMsg = true) {
+export function deleteData(path:string, params?:object, showMsg = true) {
   console.debug(`PATH: "${path}"`)
   if (params) {
     console.debug('PARAMS:')
@@ -63,7 +73,7 @@ export function deleteData(path:string, params:object, showMsg = true) {
   });
 }
 
-export function updateData(path:string, data:object, showMsg = true) {
+export function updateData(path:string, data?:object, showMsg = true) {
   console.debug(`PATH: "${path}"`)
   console.debug('DATA:')
   console.debug(data)
