@@ -73,9 +73,13 @@ const LoginQrcode: React.FC<any> = ({ location, history }) => {
           path: "/",
           domain: COOKIE_DOMAIN
         });
+        setCookie("me", res.data.user, {
+          path: "/",
+          domain: COOKIE_DOMAIN
+        });
         setChecking(false);
         setShowing(false);
-        history.push("/dashboard");
+        history.push(location.pathname);
       }
     });
   };
