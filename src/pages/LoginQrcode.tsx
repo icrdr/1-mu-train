@@ -81,7 +81,7 @@ const LoginQrcode: React.FC<any> = ({ location, history }) => {
   };
   let loginRender;
 
-  if (!isWxAgent()) {
+  if (isWxAgent()) {
     loginRender = (
       <Button type="primary" href={wx_qrcode_url} block>
         微信登陆
